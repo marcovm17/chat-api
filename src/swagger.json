@@ -1,0 +1,489 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "chat-API",
+        "contact": "marco-2882@hotmail.com",
+        "description": "This is a whatsApp clone api",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/v1/users": {
+            "post": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "register",
+                "operationId": "register",
+                "parameters": [],
+                "requestBody": {
+                    "description": "",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/registerrequest"
+                                    },
+                                    {
+                                        "example": {
+                                            "firstname": "pedro",
+                                            "lastname": "mata",
+                                            "email": "pedro-2882@hotmail.com",
+                                            "password": "Academlo123@"
+                                        }
+                                    }
+                                ]
+                            },
+                            "example": {
+                                "firstname": "pedro",
+                                "lastname": "mata",
+                                "email": "pedro-2882@hotmail.com",
+                                "password": "Academlo123@"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {}
+                    }
+                },
+                "deprecated": false,
+                "servers": [
+                    {
+                        "url": "http://localhost:8001",
+                        "variables": {}
+                    }
+                ]
+            }
+        },
+        "api/v1/users/login": {
+            "post": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "login user",
+                "operationId": "loginuser",
+                "parameters": [],
+                "requestBody": {
+                    "description": "",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/loginuserrequest"
+                                    },
+                                    {
+                                        "example": {
+                                            "email": "ian.rosas@gmail.com",
+                                            "password": "xx1234"
+                                        }
+                                    }
+                                ]
+                            },
+                            "example": {
+                                "email": "ian.rosas@gmail.com",
+                                "password": "xx1234"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {}
+                    }
+                },
+                "deprecated": false,
+                "servers": [
+                    {
+                        "url": "http://localhost:8001",
+                        "variables": {}
+                    }
+                ]
+            }
+        },
+        "api/v1/users": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "example",
+                "operationId": "example",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {}
+                    }
+                },
+                "deprecated": false,
+                "servers": [
+                    {
+                        "url": "http://localhost:8000",
+                        "variables": {}
+                    }
+                ]
+            }
+        },
+        "/api/v1/conversations/group": {
+            "post": {
+                                "security":[
+                    {
+                        "bearer":[]
+                    }
+                ],
+                "tags": [
+                    "conversations"
+                ],
+                "summary": "create conversation group",
+                "operationId": "createconversationgroup",
+                "parameters": [],
+                "requestBody": {
+                    "description": "",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/createconversationgrouprequest"
+                                    },
+                                    {
+                                        "example": {
+                                            "userId": 1,
+                                            "participantsIds": [
+                                                2,
+                                                4,
+                                                5,
+                                                6
+                                            ],
+                                            "title": "chatNode"
+                                        }
+                                    }
+                                ]
+                            },
+                            "example": {
+                                "userId": 1,
+                                "participantsIds": [
+                                    2,
+                                    4,
+                                    5,
+                                    6
+                                ],
+                                "title": "chatNode"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {}
+                    }
+                },
+                "deprecated": false,
+                "servers": [
+                    {
+                        "url": "http://localhost:8001",
+                        "variables": {}
+                    }
+                ]
+            }
+        },
+        "/api/v1/conversations/{id}": {
+            "get": {
+                                "security":[
+                    {
+                        "bearer":[]
+                    }
+                ],
+                "tags": [
+                    "conversations"
+                ],
+                "summary": "get all conversations by user",
+                "operationId": "getallconversationsbyuser",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {}
+                    }
+                },
+                "deprecated": false,
+                "servers": [
+                    {
+                        "url": "http://localhost:8001",
+                        "variables": {}
+                    }
+                ]
+            }
+        },
+        "/api/v1/conversations": {
+            "post": {
+                "security":[
+                    {
+                        "bearer":[]
+                    }
+                ],
+                "tags": [
+                    "conversations"
+                ],
+                "summary": "create conversation",
+                "operationId": "createconversation",
+                "parameters": [],
+                "requestBody": {
+                    "description": "",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/createconversationrequest"
+                                    },
+                                    {
+                                        "example": {
+                                            "userId": 1,
+                                            "participantId": 2,
+                                            "title": "chatNode"
+                                        }
+                                    }
+                                ]
+                            },
+                            "example": {
+                                "userId": 1,
+                                "participantId": 2,
+                                "title": "chatNode"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {}
+                    }
+                },
+                "deprecated": false,
+                "servers": [
+                    {
+                        "url": "http://localhost:8001",
+                        "variables": {}
+                    }
+                ]
+            }
+        },
+        "/api/v1/users/{id}": {
+            "put": {
+                "security":[
+                    {
+                        "bearer":[]
+                    }
+                ],
+                "tags": [
+                    "messages"
+                ],
+                "summary": "test-upload",
+                "operationId": "test-upload",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "example": 1
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "encoding": {},
+                            "schema": {
+                                "required": [
+                                    "avatar"
+                                ],
+                                "type": "object",
+                                "properties": {
+                                    "avatar": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": false
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {}
+                    }
+                },
+                "deprecated": false,
+                "servers": [
+                    {
+                        "url": "http://localhost:8001",
+                        "variables": {}
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "registerrequest": {
+                "title": "registerrequest",
+                "required": [
+                    "firstname",
+                    "lastname",
+                    "email",
+                    "password"
+                ],
+                "type": "object",
+                "properties": {
+                    "firstname": {
+                        "type": "string"
+                    },
+                    "lastname": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "firstname": "pedro",
+                    "lastname": "mata",
+                    "email": "pedro-2882@hotmail.com",
+                    "password": "Academlo123@"
+                }
+            },
+            "loginuserrequest": {
+                "title": "loginuserrequest",
+                "required": [
+                    "email",
+                    "password"
+                ],
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "email": "ian.rosas@gmail.com",
+                    "password": "xx1234"
+                }
+            },
+            "createconversationgrouprequest": {
+                "title": "createconversationgrouprequest",
+                "required": [
+                    "userId",
+                    "participantsIds",
+                    "title"
+                ],
+                "type": "object",
+                "properties": {
+                    "userId": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "participantsIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer",
+                            "format": "int32"
+                        },
+                        "description": ""
+                    },
+                    "title": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "userId": 1,
+                    "participantsIds": [
+                        2,
+                        4,
+                        5,
+                        6
+                    ],
+                    "title": "chatNode"
+                }
+            },
+            "createconversationrequest": {
+                "title": "createconversationrequest",
+                "required": [
+                    "userId",
+                    "participantId",
+                    "title"
+                ],
+                "type": "object",
+                "properties": {
+                    "userId": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "participantId": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "title": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "userId": 1,
+                    "participantId": 2,
+                    "title": "chatNode"
+                }
+            }
+        },
+        "securitySchemes": {
+            "bearer": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "security": [],
+    "tags": [
+        {
+            "name": "users"
+        },
+        {
+            "name": "conversations"
+        },
+        {
+            "name": "messages"
+        }
+    ]
+}
